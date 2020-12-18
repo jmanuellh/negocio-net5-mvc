@@ -33,5 +33,11 @@ namespace negocio_net5_mvc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Tabla()
+        {
+            var model = new Models.Home.Persona {Id = 1, Nombre = "Pedro"};
+            return PartialView("_Tabla", model);
+        }
     }
 }
