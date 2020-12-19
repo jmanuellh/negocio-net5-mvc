@@ -84,6 +84,10 @@ namespace negocio_net5_mvc.Controllers
         [HttpPost]
         public async Task<ActionResult<Persona>> PostPersona(Persona persona)
         {
+            if (string.IsNullOrEmpty(persona.Nombre))
+            {
+                return BadRequest();
+            }
             _context.Personas.Add(persona);
             await _context.SaveChangesAsync();
 

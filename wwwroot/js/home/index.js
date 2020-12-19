@@ -67,13 +67,24 @@ let agregarPersona = () => {
     },
     method: 'POST',
     body: JSON.stringify(persona)
-  }).then(r => r.json()).then(() => {
+  }).then().then(() => {
     fillTablePartial()
     limpiarFormPersona()
   })
 }
 
+let eliminarPersona = id => {
+  fetch('/api/personas/'+id, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'DELETE'
+  }).then().then(() => {
+    fillTablePartial()
+  })
+}
+
 let limpiarFormPersona = () => {
-  document.getElementById("inputPersona").value = ''
+  document.getElementById("inputNombre").value = ''
 }
 
