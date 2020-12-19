@@ -3,10 +3,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Hola</h1>
-<button onclick="hola()">Hola por consola</button>
+<h1>Personas</h1>
+
 <button onclick="fillTable()">Llenar tabla con JP</button>
 <button onclick="fillTablePartial()">Llenar tabla con VPartial</button>
+
+<div>
+    <input id="inputNombre" type="text" placeholder="Nombre">
+    <button onclick="agregarPersona()">Agregar</button>
+</div>
+
 <table id="tabla">
     <thead>
         <tr>

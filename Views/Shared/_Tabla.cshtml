@@ -1,3 +1,13 @@
-@model negocio_net5_mvc.Models.Home.Persona
+@model IEnumerable<negocio_net5_mvc.Models.Home.Persona>
 
-<tbody></tbody>
+@foreach(negocio_net5_mvc.Models.Home.Persona persona in Model)
+{
+    <tr>
+      <td>
+        @persona.Id
+      </td>
+      <td>
+        @persona.Nombre
+      </td>
+    </tr>
+}
