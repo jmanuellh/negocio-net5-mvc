@@ -1,3 +1,4 @@
+
 @model IEnumerable<negocio_net5_mvc.Models.Home.Persona>
 
 @foreach(negocio_net5_mvc.Models.Home.Persona persona in Model)
@@ -11,6 +12,7 @@
       </td>
       <td>
         <button onclick="eliminarPersona(@persona.Id)">Eliminar</button>
+        <button onclick="editarPersona(@Newtonsoft.Json.JsonConvert.SerializeObject(persona))">Editar</button>
       </td>
     </tr>
 }

@@ -23,6 +23,7 @@ namespace negocio_net5_mvc.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
@@ -51,5 +52,12 @@ namespace negocio_net5_mvc.Controllers
             return PartialView("_Tabla", model);
             // return Ok();
         }
+
+    public IActionResult ModificarTabla(int id)
+    {
+      Console.WriteLine(id);
+      ViewBag.Id = id;
+      return PartialView("_ModificarTabla");
     }
+  }
 }

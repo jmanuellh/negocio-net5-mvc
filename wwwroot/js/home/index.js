@@ -1,7 +1,20 @@
+var persona = {
+  id: 0,
+  nombre: ""
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   fillTablePartial()
+  cargarModificarTabla()
 });
+
+cargarModificarTabla = () => {
+  let modificarTabla = document.getElementById("modificarTabla")
+  modificarTabla.innerHTML = ""
+  fetch("/Home/ModificarTabla/"+persona.id).then(r => r.text()).then(data => {
+    modificarTabla.innerHTML = data
+  })
+}
 
 getUser1 = () => {
   axios.get("https://jsonplaceholder.typicode.com/users/1").then(r => {
@@ -75,16 +88,43 @@ let agregarPersona = () => {
 
 let eliminarPersona = id => {
   fetch('/api/personas/'+id, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
     method: 'DELETE'
   }).then().then(() => {
     fillTablePartial()
   })
 }
 
+let editarPersona = personaEditando => {
+  persona.id = personaEditando.Id
+  persona.nombre = personaEditando.Nombre
+
+  let nombre = document.getElementById("inputNombre")
+  nombre.value = persona.nombre
+
+  cargarModificarTabla()
+}
+
+let actualizarPersona = () => {
+  persona.nombre = document.getElementById("inputNombre").value
+
+  fetch('/api/personas/'+persona.id, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(persona)
+  }).then().then(() => {
+    fillTablePartial()
+    limpiarFormPersona()
+  })
+}
+
 let limpiarFormPersona = () => {
-  document.getElementById("inputNombre").value = ''
+  document.getElementById("inputNombre").value = ""
+
+  persona.id = 0
+  persona.nombre = ""
+
+  cargarModificarTabla()
 }
 
